@@ -1,6 +1,8 @@
+import Header from "@/components/layout/Header";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import "../style/globals.css";
 
 export const metadata: Metadata = {
@@ -17,9 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header />
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );
