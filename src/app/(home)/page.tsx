@@ -1,7 +1,9 @@
-import React from 'react'
+import Hero from "./sections/Hero";
 
 export default function Home() {
   return (
-    <div>Home</div>
-  )
+    <div className="flex flex-col space-y-20">
+      <Hero />
+    </div>
+  );
 }
