@@ -25,7 +25,7 @@ function AboutUs() {
               gyroscope={true}>
               <Image
                 src={"/icons/bw-default.svg"}
-                alt="logo baliwanderlust"
+                alt="Bali Wanderlust company logo"
                 width={500}
                 height={500}
                 className="w-1/2 h-1/2 mx-auto"

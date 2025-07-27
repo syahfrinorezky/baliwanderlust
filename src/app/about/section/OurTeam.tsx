@@ -48,7 +48,7 @@ function OurTeam() {
               
               <Image
                 src={member.src}
-                alt={member.name}
+                alt={`${member.name} - ${member.role}`}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />

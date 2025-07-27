@@ -56,8 +56,11 @@ function Hero() {
             muted
             playsInline
             aria-hidden="true"
+            aria-label="Background video showing beautiful Balinese scenery"
+            title="Cinematic Bali landscape video"
             className="object-cover w-full h-full">
             <source src="/videos/cinematic.mp4" type="video/mp4" />
+            <track kind="descriptions" srcLang="en" label="Cinematic views of Bali's natural beauty" />
             Your browser does not support the video tag.
           </video>
         </div>

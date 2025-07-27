@@ -30,7 +30,9 @@ function Header() {
             src={"/icons/bw-default.svg"}
             width={40}
             height={40}
-            alt="Logo"
+            alt="Bali Wanderlust company logo"
+            title="Bali Wanderlust - Home"
+            priority
           />
         </Link>
 
