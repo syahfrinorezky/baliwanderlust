@@ -1,30 +1,35 @@
 "use client";
 
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import clsx from "clsx";
+import {
+  Facebook,
+  Instagram,
+  Mail,
+  MapPin,
+  Phone,
+  Twitter,
+  Youtube,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { NAVIGATIONS } from "@/constants/navigations";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
-
-  const navigationLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Reviews", href: "/reviews" },
-    { name: "Contact", href: "/contact" }
-  ];
+  const pathname = usePathname();
 
   const socialLinks = [
     { icon: Facebook, href: "#", label: "Facebook" },
     { icon: Instagram, href: "#", label: "Instagram" },
     { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Youtube, href: "#", label: "Youtube" }
+    { icon: Youtube, href: "#", label: "Youtube" },
   ];
 
   const contactInfo = [
     { icon: Mail, text: "info@baliwanderlust.com" },
     { icon: Phone, text: "+62 123 456 789" },
-    { icon: MapPin, text: "Jl. Raya Ubud No. 123, Bali, Indonesia" }
+    { icon: MapPin, text: "Jl. Raya Ubud No. 123, Bali, Indonesia" },
   ];
 
   return (
@@ -42,18 +47,19 @@ function Footer() {
               />
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Discover the magic of Indonesia with our expertly crafted tour packages. 
-              We create unforgettable experiences that connect you with local culture, 
-              stunning landscapes, and authentic adventures.
+              Discover the magic of Indonesia with our expertly crafted tour
+              packages. We create unforgettable experiences that connect you
+              with local culture, stunning landscapes, and authentic adventures.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social, index) => (
                 <Link
                   key={index}
                   href={social.href}
-                  className="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-yellow-500 transition-colors duration-300 group"
-                  aria-label={social.label}
-                >
+                  className={clsx(
+                    "w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-yellow-500 transition-colors duration-300 group"
+                  )}
+                  aria-label={social.label}>
                   <social.icon className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
                 </Link>
               ))}
@@ -61,14 +67,20 @@ function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold text-yellow-500 mb-6">Navigation</h3>
+            <h3 className="text-lg font-semibold text-yellow-500 mb-6">
+              Navigation
+            </h3>
             <ul className="space-y-3">
-              {navigationLinks.map((link, index) => (
+              {NAVIGATIONS.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-yellow-500 transition-colors duration-300 text-sm"
-                  >
+                    className={clsx(
+                      "text-sm transition-colors duration-300",
+                      pathname === link.href
+                        ? "text-yellow-500"
+                        : "text-gray-300 hover:text-yellow-500"
+                    )}>
                     {link.name}
                   </Link>
                 </li>
@@ -77,7 +89,9 @@ function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold text-yellow-500 mb-6">Contact Info</h3>
+            <h3 className="text-lg font-semibold text-yellow-500 mb-6">
+              Contact Info
+            </h3>
             <ul className="space-y-4">
               {contactInfo.map((contact, index) => (
                 <li key={index} className="flex items-start gap-3">
@@ -101,14 +115,12 @@ function Footer() {
             <div className="flex gap-6">
               <Link
                 href="/privacy"
-                className="text-gray-400 hover:text-yellow-500 transition-colors duration-300 text-sm"
-              >
+                className="text-gray-400 hover:text-yellow-500 transition-colors duration-300 text-sm">
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-gray-400 hover:text-yellow-500 transition-colors duration-300 text-sm"
-              >
+                className="text-gray-400 hover:text-yellow-500 transition-colors duration-300 text-sm">
                 Terms of Service
               </Link>
             </div>
