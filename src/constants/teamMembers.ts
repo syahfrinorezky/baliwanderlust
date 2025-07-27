@@ -1,4 +1,4 @@
-export const teamMember = [
+export const teamMembers = [
   {
     name: "I Kadek Mahendra",
     src: "/images/team/dummy-mahendra.png",
