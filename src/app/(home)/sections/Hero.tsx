@@ -45,7 +45,9 @@ function Hero() {
   };
 
   return (
-    <section id="hero">
+    <section 
+      id="hero" 
+      className="min-h-screen bg-white dark:bg-neutral-900">
       <div className="relative min-h-screen">
         <div className="absolute inset-0 z-0">
           <video

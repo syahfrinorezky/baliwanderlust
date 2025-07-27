@@ -11,7 +11,7 @@ function Package() {
   return (
     <section
       id="package"
-      className="min-h-screen bg-white dark:bg-neutral-900 py-22">
+      className="min-h-screen bg-white dark:bg-neutral-900 py-20">
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
