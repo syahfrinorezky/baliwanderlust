@@ -12,17 +12,20 @@ import { useInViewTrigger } from "@/hooks/useInViewTrigger";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
+import { useRef } from "react";
 
 function Review() {
   const { ref, inView } = useInViewTrigger();
+  
+  const autoplayRef = useRef(
+    Autoplay({
+      delay: 4000,
+      stopOnInteraction: true,
+      stopOnMouseEnter: true,
+    })
+  );
 
-  const autoplayPlugin = Autoplay({
-    delay: 4000,
-    stopOnInteraction: true,
-    stopOnMouseEnter: true,
-  });
-
-  const renderStars = (rating: number) => {
+  const renderStars = (rating:number) => {
     return [...Array(5)].map((_, i) => (
       <Star
         key={i}
@@ -36,8 +39,10 @@ function Review() {
   };
 
   return (
-    <section id="reviews">
-      <div className="min-h-screen container mx-auto flex flex-col items-center justify-center px-4">
+    <section 
+      id="reviews" 
+      className="min-h-screen bg-white dark:bg-neutral-900 py-20">
+      <div className="container mx-auto px-6 flex flex-col items-center justify-center">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
@@ -59,14 +64,12 @@ function Review() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="max-w-5xl mx-auto">
           <Carousel
-            plugins={[autoplayPlugin]}
+            plugins={[autoplayRef.current]}
             opts={{
               align: "start",
               loop: true,
             }}
-            className="w-full"
-            onMouseEnter={() => autoplayPlugin.stop()}
-            onMouseLeave={() => autoplayPlugin.play()}>
+            className="w-full">
             <CarouselContent className="-ml-4 pt-6">
               {reviews.map((review, index) => (
                 <CarouselItem key={review.id} className="pl-4 basis-1/3">
