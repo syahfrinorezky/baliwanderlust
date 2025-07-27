@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
@@ -24,6 +25,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
           <main>{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
