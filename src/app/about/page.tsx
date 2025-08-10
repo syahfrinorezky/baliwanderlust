@@ -1,6 +1,12 @@
+/** @format */
+
 import AboutUs from "./section/About";
 import OurTeam from "./section/OurTeam";
 import OurJourney from "./section/OurJourney";
+
+export const metadata = {
+  title: "Bali Wanderlust - About Us",
+};
 
 export default function About() {
   return (
