@@ -35,11 +35,12 @@
 ---
 
 ## 🚀 Cara Setup
+Jika bermasalah dengan file zip, maka bisa melakukan cara berikut :
 
 1. Clone repository:
 
    ```bash
-   git clone https://github.com/syahfrinorezky/baliwanderlust.git && cd bali-wanderlust
+   git clone https://github.com/syahfrinorezky/baliwanderlust.git && cd baliwanderlust
    ```
 
 2. Install dependencies:
