@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import { Progress } from "@/components/ui/progress";
@@ -20,6 +22,8 @@ function OurJourney() {
     return () => clearInterval(interval);
   }, []);
 
+  const activeMilestone = milestonesTl[activeIndex];
+
   return (
     <section
       id="ourjourney"
@@ -36,8 +40,8 @@ function OurJourney() {
               Our Journey
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Our journey to build a travel and tour agency that serves the needs
-              of local and international tourists
+              Our journey to build a travel and tour agency that serves the
+              needs of local and international tourists
             </p>
           </motion.div>
 
@@ -114,7 +118,9 @@ function OurJourney() {
                           <Icon
                             className={clsx(
                               "w-7 h-7 transition-all duration-500",
-                              passed ? "text-white" : "text-gray-500 dark:text-gray-400"
+                              passed
+                                ? "text-white"
+                                : "text-gray-500 dark:text-gray-400"
                             )}
                           />
                         </div>
@@ -132,7 +138,7 @@ function OurJourney() {
                               ? { opacity: 1, y: 0, scale: 1 }
                               : { opacity: 0, y: 20, scale: 0.8 }
                           }
-                          transition={{ duration: 0.45, delay: delay + 0.6 }}
+                          transition={{ duration: 0.45, delay: delay }}
                           className="absolute top-20 mt-12 text-center min-w-max px-2">
                           <p
                             className={clsx(
@@ -150,6 +156,84 @@ function OurJourney() {
                 );
               })}
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="max-w-3xl mx-auto mt-16">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-md border border-gray-100 dark:border-neutral-700 hover:shadow-lg transition-shadow duration-300">
+                <div className="flex items-start gap-4">
+                  <motion.div
+                    key={`icon-${activeIndex}`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, delay: 0.2 }}
+                    className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-gradient-to-tr from-yellow-400 to-yellow-600 rounded-lg flex items-center justify-center shadow-sm">
+                      <activeMilestone.icon className="w-6 h-6 text-white" />
+                    </div>
+                  </motion.div>
+
+                  <div className="flex-1 min-w-0">
+                    <motion.div
+                      key={`content-${activeIndex}`}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                      className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg font-bold text-yellow-600 dark:text-yellow-400">
+                          {activeMilestone.year}
+                        </span>
+                        <div className="h-0.5 flex-1 bg-gradient-to-r from-yellow-400 to-transparent opacity-50"></div>
+                      </div>
+
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                        {activeMilestone.title}
+                      </h3>
+
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        {activeMilestone.description}
+                      </motion.p>
+
+                      {activeMilestone.highlights && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 15 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.5 }}
+                          className="flex flex-wrap gap-1.5 mt-3">
+                          {activeMilestone.highlights.map((highlight, index) => (
+                            <motion.span
+                              key={`${activeIndex}-${index}`}
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{
+                                duration: 0.4,
+                                delay: 0.6 + index * 0.1,
+                                ease: "easeOut",
+                              }}
+                              className="px-2 py-1 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-300 rounded-md text-xs font-medium">
+                              {highlight}
+                            </motion.span>
+                          ))}
+                        </motion.div>
+                      )}
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
