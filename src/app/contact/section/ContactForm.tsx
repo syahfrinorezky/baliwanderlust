@@ -17,7 +17,11 @@ function ContactForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -25,7 +29,7 @@ function ContactForm() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -77,6 +81,7 @@ function ContactForm() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -110,11 +115,11 @@ function ContactForm() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.6 }}
               className="bg-gray-100 dark:bg-neutral-700 rounded-lg overflow-hidden h-32 flex items-center justify-center border border-gray-300 dark:border-none mt-6">
-              <div className="text-center">
+              <div className="text-center w-full h-full">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4085.085898153196!2d115.25771562611698!3d-8.505981007609698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23d697fc746c9%3A0xa16d285df4dcaa3e!2sJl.%20Raya%20Ubud%2C%20Kecamatan%20Ubud%2C%20Kabupaten%20Gianyar%2C%20Bali%2080571!5e0!3m2!1sid!2sid!4v1753609485677!5m2!1sid!2sid"
-                  width="600"
-                  height="450"
+                  width="100%"
+                  height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
@@ -123,6 +128,7 @@ function ContactForm() {
             </motion.div>
           </motion.div>
 
+          {/* Right Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -133,7 +139,7 @@ function ContactForm() {
                 Send Message
               </h2>
 
-              <div className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="flex items-center gap-2 text-gray-700 dark:text-gray-300 font-medium text-sm mb-2">
@@ -220,8 +226,7 @@ function ContactForm() {
                 </div>
 
                 <motion.button
-                  type="button"
-                  onClick={handleSubmit}
+                  type="submit"
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
@@ -238,7 +243,7 @@ function ContactForm() {
                     </>
                   )}
                 </motion.button>
-              </div>
+              </form>
             </div>
           </motion.div>
         </div>
